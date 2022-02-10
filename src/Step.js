@@ -15,7 +15,7 @@ export default class Step extends Component {
       circleTop, titleTop, width, completeOpacity, activeOpacity, defaultOpacity,
       completeTitleOpacity, activeTitleOpacity, defaultTitleOpacity, barStyle, defaultBarColor,
       completeBarColor, defaultBorderColor, completeBorderColor, activeBorderColor,
-      defaultBorderStyle,completeBorderStyle, activeBorderStyle, lineMarginOffset, defaultBorderWidth
+      defaultBorderStyle,completeBorderStyle, activeBorderStyle, lineMarginOffset, defaultBorderWidth,
     } = this.props;
 
     return {
@@ -110,7 +110,7 @@ export default class Step extends Component {
   }
 
   render() {
-    const { title, icon, index, active, completed, first, isLast, href, onClick } = this.props;
+    const { title, icon,label,completedLabel, index, active, completed, first, isLast, href, onClick } = this.props;
 
     const styles = this.getStyles();
     const circleStyle = Object.assign(
@@ -132,7 +132,7 @@ export default class Step extends Component {
       <div style={ styles.step }>
         <div style={ circleStyle }>
         {active || completed ? (
-          <a href={href} onClick={onClick} style={ styles.index }>{ stepContent }</a>
+          <a href={href} onClick={onClick} style={ styles.index }>{ completedLabel }</a>
         ) : (
           <span style={ styles.index }>{ stepContent }</span>
         )}
