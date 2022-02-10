@@ -15,7 +15,7 @@ export default class Step extends Component {
       circleTop, titleTop, width, completeOpacity, activeOpacity, defaultOpacity,
       completeTitleOpacity, activeTitleOpacity, defaultTitleOpacity, barStyle, defaultBarColor,
       completeBarColor, defaultBorderColor, completeBorderColor, activeBorderColor,
-      defaultBorderStyle,completeBorderStyle, activeBorderStyle, lineMarginOffset, defaultBorderWidth,
+      defaultBorderStyle, completeBorderStyle, activeBorderStyle, lineMarginOffset, defaultBorderWidth,
     } = this.props;
 
     return {
@@ -110,7 +110,7 @@ export default class Step extends Component {
   }
 
   render() {
-    const { title, icon,label,completedLabel, index, active, completed, first, isLast, href, onClick } = this.props;
+    const { title, icon, label, completedLabel, index, active, completed, first, isLast, href, onClick } = this.props;
 
     const styles = this.getStyles();
     const circleStyle = Object.assign(
@@ -126,24 +126,24 @@ export default class Step extends Component {
     const leftStyle = Object.assign(styles.leftBar, (active || completed) ? styles.completedBar : {});
     const rightStyle = Object.assign(styles.rightBar, completed ? styles.completedBar : {});
 
-    const stepContent = icon ? <img src={icon} alt={index + 1} /> : index + 1;
+    const stepContent = icon ? <img src={icon} alt={index + 1} /> : label ? label : index + 1;
 
     return (
-      <div style={ styles.step }>
-        <div style={ circleStyle }>
-        {active || completed ? (
-          <a href={href} onClick={onClick} style={ styles.index }>{ completedLabel }</a>
-        ) : (
-          <span style={ styles.index }>{ stepContent }</span>
-        )}
+      <div style={styles.step}>
+        <div style={circleStyle}>
+          {active || completed ? (
+            <a href={href} onClick={onClick} style={styles.index}>{completedLabel}</a>
+          ) : (
+            <span style={styles.index}>{stepContent}</span>
+          )}
         </div>
         {active || completed ? (
-          <a href={href} onClick={onClick} style={ titleStyle }>{ title }</a>
+          <a href={href} onClick={onClick} style={titleStyle}>{title}</a>
         ) : (
-          <div style={ titleStyle }>{ title }</div>
+          <div style={titleStyle}>{title}</div>
         )}
-        { !first && <div style={ leftStyle }></div> }
-        { !isLast && <div style={ rightStyle }></div> }
+        {!first && <div style={leftStyle}></div>}
+        {!isLast && <div style={rightStyle}></div>}
       </div>
     );
   }
